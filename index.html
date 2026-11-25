@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Lead Book 2 · Lesson 3 | Colegio Tlahtoani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--morado:#4B2A8C;--morado-oscuro:#2E1A5E;--verde:#7CB342;--verde-claro:#E4F0CF;--sol:#F6C945;--crema:#FBF8F1;--texto:#2B2350;--suave:#5B5478;--borde:#E4DEF2}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{background:#1B0F3D;font-family:'Nunito Sans',Arial,sans-serif;color:var(--texto);display:flex;align-items:center;justify-content:center}
+h1,h2,h3,.f{font-family:'Nunito',Arial,sans-serif;font-weight:800}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--sol);outline-offset:3px}
+#stage{width:1280px;height:720px;flex-shrink:0;transform-origin:center center;position:relative;background:var(--crema);overflow:hidden;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+
+/* Barra superior */
+.bar{position:absolute;left:0;right:0;top:0;height:84px;background:linear-gradient(135deg,var(--morado-oscuro),var(--morado));display:flex;align-items:center;gap:18px;padding:0 36px;color:#fff;z-index:5}
+.logo{width:60px;height:60px;border-radius:50%;background:#fff;padding:5px}
+.logo img{width:100%;height:100%;object-fit:contain;display:block}
+.bar b{font-family:'Nunito',sans-serif;font-weight:800;font-size:25px;display:block;line-height:1.1}
+.bar small{color:#D8D0F0;font-size:15px;letter-spacing:.06em}
+.pill{margin-left:auto;background:var(--sol);color:var(--morado-oscuro);font-family:'Nunito',sans-serif;font-weight:800;font-size:20px;border-radius:999px;padding:8px 22px}
+.cnt{background:rgba(255,255,255,.15);font-family:'Nunito',sans-serif;font-weight:800;font-size:20px;border-radius:999px;padding:8px 20px}
+
+/* Slides */
+.slide{position:absolute;left:0;right:0;top:84px;bottom:78px;padding:28px 40px;display:none}
+.slide.on{display:block}
+
+/* Portada */
+.cover{display:none;grid-template-columns:420px 1fr;gap:34px;align-items:center}
+.cover.on{display:grid}
+.cover .tag{display:inline-block;background:var(--verde-claro);color:#3E6B16;font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;letter-spacing:.12em;text-transform:uppercase;padding:7px 18px;border-radius:999px;margin-bottom:16px}
+.cover h1{font-size:60px;line-height:1.05;color:var(--morado-oscuro);margin-bottom:14px}
+.cover h1 em{font-style:normal;color:var(--morado)}
+.cover p{font-size:22px;color:var(--suave);margin-bottom:22px}
+.start{background:var(--verde);color:#1B2B0B;border:0;border-radius:999px;font-weight:800;font-size:24px;padding:14px 34px;font-family:'Nunito',sans-serif;box-shadow:0 8px 18px rgba(124,179,66,.4)}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.chip{background:#fff;border:3px solid var(--borde);border-radius:18px;padding:10px 12px;text-align:left;display:flex;align-items:center;gap:10px;font-family:'Nunito',sans-serif;font-weight:800;font-size:22px;color:var(--morado-oscuro);min-height:62px;transition:.15s}
+.chip:hover{border-color:var(--verde);transform:translateY(-2px)}
+.chip i{font-style:normal;font-size:28px}
+
+/* Palabra */
+.word-s{display:none;grid-template-columns:500px 1fr;gap:28px}
+.word-s.on{display:grid}
+.left{background:linear-gradient(160deg,var(--morado-oscuro),var(--morado));border-radius:30px;color:#fff;padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;gap:8px}
+.left .emo{font-size:84px;line-height:1}
+.left .num{position:absolute;left:22px;top:18px;background:rgba(255,255,255,.16);border-radius:999px;font-family:'Nunito',sans-serif;font-weight:800;font-size:18px;padding:4px 16px;color:var(--sol)}
+.left .w{font-family:'Nunito',sans-serif;font-weight:900;font-size:72px;line-height:1.05;color:#fff;overflow-wrap:anywhere}
+.left .w.long{font-size:56px}
+.spk{width:64px;height:64px;border-radius:50%;border:0;background:var(--sol);color:var(--morado-oscuro);display:flex;align-items:center;justify-content:center;transition:.15s}
+.spk:hover{transform:scale(1.08)}
+.spk svg{width:30px;height:30px;fill:currentColor}
+.left .es{font-family:'Nunito',sans-serif;font-weight:800;font-size:34px;color:var(--sol);margin-top:4px}
+.left .lab{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#CFC4EE;font-family:'Nunito',sans-serif;font-weight:800}
+.right{display:flex;flex-direction:column;gap:18px;justify-content:center}
+.card{border-radius:26px;padding:22px 28px}
+.card.en{background:#F3EEFB;border:3px solid var(--borde)}
+.card.tr{background:#FFF7DB;border:3px solid #F1DE9B}
+.card .lab{font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--suave);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.card .t{font-family:'Nunito',sans-serif;font-weight:800;font-size:40px;line-height:1.25;color:var(--morado-oscuro)}
+.card.tr .t{font-size:32px;color:#5A4A12;font-weight:700}
+.t mark{background:var(--sol);color:var(--morado-oscuro);border-radius:10px;padding:0 8px}
+.blank{display:inline-block;min-width:150px;border-bottom:6px dashed var(--morado);color:transparent;cursor:pointer;vertical-align:baseline;user-select:none;border-radius:6px}
+.blank:hover{background:var(--verde-claro)}
+.hint{font-size:18px;color:var(--suave);text-align:center}
+
+/* Fin */
+.end{display:none;text-align:center;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.end.on{display:flex}
+.end h1{font-size:76px;color:var(--morado-oscuro)}
+.end p{font-size:26px;color:var(--suave)}
+.btn{background:var(--morado);color:#fff;border:0;border-radius:999px;font-weight:800;font-size:22px;padding:12px 28px;font-family:'Nunito',sans-serif;min-height:52px}
+.btn.v{background:var(--verde);color:#1B2B0B}
+.btn.c{background:var(--verde-claro);color:#3E6B16}
+.btn.on{background:var(--sol);color:var(--morado-oscuro)}
+
+/* Pie */
+.foot{position:absolute;left:0;right:0;bottom:0;height:78px;background:#fff;border-top:3px solid var(--borde);display:flex;align-items:center;gap:14px;padding:0 36px;z-index:5}
+.dots{flex:1;display:flex;gap:8px;justify-content:center;align-items:center}
+.dot{width:14px;height:14px;border-radius:50%;border:0;background:var(--borde);padding:0}
+.dot.on{background:var(--morado);transform:scale(1.35)}
+.dot.done{background:var(--verde)}
+#rot{display:none;position:fixed;left:0;right:0;top:0;background:var(--sol);color:var(--morado-oscuro);font-family:'Nunito',sans-serif;font-weight:800;text-align:center;padding:10px;z-index:50;font-size:16px}
+@media (orientation:portrait){#rot{display:block}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="rot">📱 Gira tu celular o tablet en horizontal para verlo mejor</div>
+<div id="stage">
+ <div class="bar">
+  <span class="logo"><img src="logo-tlahtoani.png" alt="Logo Colegio Tlahtoani"></span>
+  <span><b>Lead Book 2 · Lesson 3</b><small>COLEGIO TLAHTOANI · 4TH GRADE ENGLISH</small></span>
+  <span class="pill">Words in Sentences</span>
+  <span class="cnt" id="cnt">Inicio</span>
+ </div>
+
+ <section class="slide cover on" id="cover">
+  <div>
+   <span class="tag">Spelling Bee · Vocabulary</span>
+   <h1>Lead Book 2<br><em>Lesson 3</em></h1>
+   <p>14 palabras con su significado y su oración del libro. Toca una palabra o empieza.</p>
+   <button class="start" id="start">▶ Empezar</button>
+  </div>
+  <div class="chips" id="chips"></div>
+ </section>
+
+ <section class="slide word-s" id="wordS">
+  <div class="left">
+   <span class="num" id="num"></span>
+   <div class="emo" id="emo"></div>
+   <div class="w" id="w"></div>
+   <button class="spk" id="say" aria-label="Escuchar la palabra"><svg viewBox="0 0 24 24"><path d="M3 10v4h4l5 4V6L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button>
+   <div class="lab">Significado</div>
+   <div class="es" id="es"></div>
+  </div>
+  <div class="right">
+   <div class="card en">
+    <div class="lab"><span>Sentence</span><button class="spk" id="say2" style="width:46px;height:46px" aria-label="Escuchar la oración"><svg viewBox="0 0 24 24" style="width:22px;height:22px"><path d="M3 10v4h4l5 4V6L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button></div>
+    <div class="t" id="en"></div>
+   </div>
+   <div class="card tr"><div class="lab"><span>En español</span></div><div class="t" id="tr"></div></div>
+   <div class="hint" id="hint"></div>
+  </div>
+ </section>
+
+ <section class="slide end" id="end">
+  <h1>🌟 Great job!</h1>
+  <p>Terminaste las 14 palabras de la Lesson 3.</p>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+   <button class="btn v" id="again">↺ Repasar con palabra faltante</button>
+   <button class="btn c" id="home">Ir al inicio</button>
+  </div>
+ </section>
+
+ <div class="foot">
+  <button class="btn c" id="prev" aria-label="Anterior">← Anterior</button>
+  <button class="btn" id="blankBtn" aria-pressed="false">🙈 Palabra faltante</button>
+  <div class="dots" id="dots"></div>
+  <button class="btn v" id="next" aria-label="Siguiente">Siguiente →</button>
+ </div>
+</div>
+
+<script>
+const D = [
+ ["sore","adolorido(a)","🦶","My feet are sore from walking around all day.","Mis pies están adoloridos de caminar todo el día."],
+ ["plenty","mucho(s), bastante","🎁","She brought plenty of stickers to share with everyone.","Ella trajo muchas calcomanías para compartir con todos."],
+ ["encourage","animar, alentar","💪","Friends encourage each other to keep trying their very best.","Los amigos se animan unos a otros a seguir esforzándose al máximo."],
+ ["coach","entrenador(a)","📣","The coach gave us advice before we played the big game.","El entrenador nos dio un consejo antes de jugar el gran partido."],
+ ["flexible","flexible","🤸","We stretch in the morning to stay flexible during gym activities.","Nos estiramos por la mañana para mantenernos flexibles durante las actividades de gimnasia."],
+ ["servants","sirvientes","🧹","The servants worked together to keep the large castle clean.","Los sirvientes trabajaron juntos para mantener limpio el gran castillo."],
+ ["perseverance","perseverancia","⛰️","He showed perseverance by climbing up the mountain without stopping.","Él mostró perseverancia al subir la montaña sin detenerse."],
+ ["tough","duro(a), resistente","🧗","Climbing the mountain was tough, but we never quit trying.","Escalar la montaña fue difícil, pero nunca dejamos de intentarlo."],
+ ["avoid","evitar","⚠️","Stay close to your group on trips to avoid danger.","Mantente cerca de tu grupo en los viajes para evitar el peligro."],
+ ["teammate","compañero(a) de equipo","🤝","He thanked his teammate for sharing water during practice.","Él le agradeció a su compañero de equipo por compartir agua durante el entrenamiento."],
+ ["tired","cansado(a)","😴","She gets tired if she doesn't get enough sleep at night.","Ella se cansa si no duerme lo suficiente por la noche."],
+ ["caring","cariñoso(a), atento(a)","💛","A caring friend will help you when you get hurt.","Un amigo cariñoso te ayudará cuando te lastimes."],
+ ["trust","confianza, confiar","🫶","We trust our friends to keep their promises.","Confiamos en que nuestros amigos cumplan sus promesas."],
+ ["communicate","comunicarse","💬","She will communicate her ideas in the next meeting.","Ella comunicará sus ideas en la próxima reunión."]
+];
+const N = D.length, TOTAL = N + 2; // portada + 14 + final
+let cur = 0, blank = false;
+const $ = s => document.querySelector(s);
+const stage = $('#stage');
+
+/* Escala 16:9 */
+function fit(){
+  const s = Math.min(innerWidth / 1280, innerHeight / 720) * (innerWidth > 1300 ? .98 : 1);
+  stage.style.transform = `scale(${s})`;
+}
+addEventListener('resize', fit); fit();
+
+/* Voz */
+let voice = null;
+function pick(){ if(!('speechSynthesis' in window)) return; const v = speechSynthesis.getVoices().filter(x => /^en/i.test(x.lang)); voice = v.find(x => /en-US/i.test(x.lang) && /(samantha|google|natural|aria|jenny)/i.test(x.name)) || v.find(x => /en-US/i.test(x.lang)) || v[0] || null; }
+if('speechSynthesis' in window){ pick(); speechSynthesis.onvoiceschanged = pick; }
+function say(t, r){ if(!('speechSynthesis' in window)) return; speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = 'en-US'; if(voice) u.voice = voice; u.rate = r || .85; speechSynthesis.speak(u); }
+
+/* Portada */
+$('#chips').innerHTML = D.map((d, i) => `<button class="chip" data-i="${i + 1}"><i>${d[2]}</i>${d[0]}</button>`).join('');
+$('#dots').innerHTML = Array.from({length: TOTAL}, (_, i) => `<button class="dot" data-i="${i}" aria-label="Ir a la diapositiva ${i + 1}"></button>`).join('');
+
+function esc(s){ return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function sentence(d){
+  const re = new RegExp('\\b(' + d[0] + ')\\b', 'i');
+  return esc(d[3]).replace(re, m => blank
+    ? `<span class="blank" role="button" tabindex="0" data-w="${m}" aria-label="Palabra faltante, toca para ver">${m}</span>`
+    : `<mark>${m}</mark>`);
+}
+
+function show(i){
+  speechSynthesis && speechSynthesis.cancel && speechSynthesis.cancel();
+  cur = Math.max(0, Math.min(TOTAL - 1, i));
+  $('#cover').classList.toggle('on', cur === 0);
+  $('#wordS').classList.toggle('on', cur > 0 && cur <= N);
+  $('#end').classList.toggle('on', cur === TOTAL - 1);
+  $('#cnt').textContent = cur === 0 ? 'Inicio' : cur === TOTAL - 1 ? 'Final' : `${cur} / ${N}`;
+  if(cur > 0 && cur <= N){
+    const d = D[cur - 1];
+    $('#num').textContent = '#' + (28 + cur);
+    $('#emo').textContent = d[2];
+    const w = $('#w'); w.textContent = d[0]; w.classList.toggle('long', d[0].length > 9);
+    $('#es').textContent = d[1];
+    $('#en').innerHTML = sentence(d);
+    $('#tr').textContent = d[4];
+    $('#hint').textContent = blank ? 'Di la palabra que falta y toca la línea para comprobarla.' : '';
+  }
+  document.querySelectorAll('.dot').forEach((x, k) => { x.classList.toggle('on', k === cur); x.classList.toggle('done', k < cur); });
+  $('#prev').style.visibility = cur === 0 ? 'hidden' : 'visible';
+  $('#next').style.visibility = cur === TOTAL - 1 ? 'hidden' : 'visible';
+}
+function setBlank(v){
+  blank = v; const b = $('#blankBtn');
+  b.classList.toggle('on', v); b.setAttribute('aria-pressed', v);
+  b.textContent = v ? '👀 Mostrar palabra' : '🙈 Palabra faltante';
+  show(cur);
+}
+
+$('#start').onclick = () => show(1);
+$('#chips').onclick = e => { const c = e.target.closest('.chip'); if(c) show(+c.dataset.i); };
+$('#dots').onclick = e => { const d = e.target.closest('.dot'); if(d) show(+d.dataset.i); };
+$('#prev').onclick = () => show(cur - 1);
+$('#next').onclick = () => show(cur + 1);
+$('#blankBtn').onclick = () => setBlank(!blank);
+$('#say').onclick = () => say(D[cur - 1][0], .75);
+$('#say2').onclick = () => say(D[cur - 1][3], .85);
+$('#again').onclick = () => { setBlank(true); show(1); };
+$('#home').onclick = () => show(0);
+$('#en').addEventListener('click', e => {
+  const b = e.target.closest('.blank');
+  if(b){ b.textContent = b.dataset.w; b.style.cssText = 'color:var(--morado);border-bottom-style:solid;background:var(--sol);padding:0 8px'; say(D[cur - 1][3], .85); }
+});
+addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight' || e.key === 'PageDown'){ e.preventDefault(); show(cur + 1); }
+  else if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); show(cur - 1); }
+  else if(e.key === 'Home') show(0);
+  else if(e.key === 'End') show(TOTAL - 1);
+  else if((e.key === 'b' || e.key === 'B') && !e.target.closest('button')) setBlank(!blank);
+  else if((e.key === 's' || e.key === 'S') && cur > 0 && cur <= N) say(D[cur - 1][0], .75);
+  else if(e.key === 'Enter' && e.target.classList && e.target.classList.contains('blank')) e.target.click();
+});
+/* Deslizar en táctil */
+let tx = null;
+stage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive: true});
+stage.addEventListener('touchend', e => { if(tx === null) return; const dx = e.changedTouches[0].clientX - tx; if(Math.abs(dx) > 60) show(cur + (dx < 0 ? 1 : -1)); tx = null; });
+show(0);
+</script>
+</body>
+</html>
